@@ -1,0 +1,178 @@
+## notes
+
+ROS workspace:
+qpweight_ws
+
+
+
+
+
+
+
+
+## scenarios setting
+
+
+
+
+
+## metrics
+
+smootheness, kinematics accuracy, energy efficiency
+
+
+
+
+
+##
+## Improvement for dls_ik_solver
+A few suggestions for potential improvements:
+1.You might want to add a parameter to control the maximum damping factor in the 'IK_velocity_selective_damping' function, allowing it to be adjusted if needed.
+
+2.Consider adding some logging or debugging output to track the convergence of the IK solver. This could include printing the current error (both position and orientation) at each iteration.
+
+3.You could add a method to compare the performance of this new Selective Damping approach with the original DLS method, perhaps by solving the same problem with both methods and comparing the number of iterations and final error.
+
+4.The 'adjust_last_joint' method is still being used. Make sure this is still necessary with the new approach, as it might affect the overall solution.
+
+
+
+
+
+
+
+##
+## energy optimization
+
+so you know I have an idea of introducing the energy optimization the following
+
+1. Understanding Energy Consumption in Robot Arms
+- Energy Factors:
+  - Joint Torques: Energy is consumed when generating torques to move or hold positions.
+  - Joint Velocities and Accelerations: Higher speeds and accelerations typically require more energy.
+  - Mechanical and Electrical Losses: Friction, heat dissipation, and inefficiencies in actuators.
+2. Defining the Energy Optimization Objective
+- Objective Function:
+  - Minimize Total Energy Consumption (E):
+    \[
+    E = \int_{t_0}^{tf} P(t) \, dt
+    \]
+    where \( P(t) \) is the instantaneous power consumption.
+- Simplified Objective:
+  - Minimize the Sum of Squared Joint Torques:
+    \[
+    E = \sum{i=1}^{n} \taui^2
+    \]
+    - Or Minimize Squared Joint Velocities (if torque data is unavailable):
+      \[
+      E = \sum{i=1}^{n} \dot{q}i^2
+      \]
+3. Integrating Energy Optimization into Null Space
+- Primary Task (End-Effector Control):
+  - Compute the joint velocities using DLS to achieve the desired end-effector motion:
+    \[
+    \dot{\mathbf{q}}{\text{primary}} = \mathbf{J}^T (\mathbf{J} \mathbf{J}^T + \lambda^2 \mathbf{I})^{-1} \dot{\mathbf{x}}
+    \]
+- Secondary Task (Energy Minimization):
+  - Project the energy optimization task into the null space of the Jacobian:
+    \[
+    \dot{\mathbf{q}} = \dot{\mathbf{q}}{\text{primary}} + \mathbf{N} \dot{\mathbf{q}}{\text{secondary}}
+    \]
+    where:
+    - \(\mathbf{N} = \mathbf{I} - \mathbf{J}^\dagger \mathbf{J}\) is the null space projector.
+    - \(\dot{\mathbf{q}}{\text{secondary}}\) is designed to minimize energy consumption.
+4. Formulating the Secondary Task
+- Gradient Projection Method:
+  - Compute the gradient of the energy function with respect to joint velocities:
+    \[
+    \nabla{\dot{\mathbf{q}}} E = 2 \dot{\mathbf{q}}
+    \]
+  - Define the secondary task velocity:
+    \[
+    \dot{\mathbf{q}}_{\text{secondary}} = -kE \nabla{\dot{\mathbf{q}}} E = -2 k_E \dot{\mathbf{q}}
+    \]
+    where \( kE \) is a positive scalar gain.
+- Combined Joint Velocity Command:
+  \[
+  \dot{\mathbf{q}} = \dot{\mathbf{q}}{\text{primary}} - 2 k_E \mathbf{N} \dot{\mathbf{q}}
+  \]
+- Solving for \( \dot{\mathbf{q}} \):
+  - Rearranged equation:
+    \[
+    (\mathbf{I} + 2 kE \mathbf{N}) \dot{\mathbf{q}} = \dot{\mathbf{q}}{\text{primary}}
+    \]
+  - Solve for \( \dot{\mathbf{q}} \):
+    \[
+    \dot{\mathbf{q}} = (\mathbf{I} + 2 kE \mathbf{N})^{-1} \dot{\mathbf{q}}{\text{primary}}
+    \]
+5. Quadratic Programming (QP) Approach
+- Formulate as an Optimization Problem:
+  - Objective: Minimize energy consumption.
+    \[
+    \min{\dot{\mathbf{q}}} \frac{1}{2} \dot{\mathbf{q}}^T \mathbf{W} \dot{\mathbf{q}}
+    \]
+    where \( \mathbf{W} \) is a weighting matrix (usually positive definite).
+  - Subject to: Achieving desired end-effector motion.
+    \[
+    \mathbf{J} \dot{\mathbf{q}} = \dot{\mathbf{x}}
+    \]
+- Solution Using Lagrange Multipliers:
+  - The optimal solution is:
+    \[
+    \dot{\mathbf{q}} = \mathbf{W}^{-1} \mathbf{J}^T (\mathbf{J} \mathbf{W}^{-1} \mathbf{J}^T)^{-1} \dot{\mathbf{x}}
+    \]
+- Benefits of QP Approach:
+  - Provides a unified framework for combining primary and secondary objectives.
+  - Handles constraints naturally (e.g., joint limits, velocity limits).
+6. Adaptive Damping and Weighting
+- Adaptive Damping Factor (\( \lambda \)):
+  - Adjust \( \lambda \) based on the smallest singular value \( \sigma{\text{min}} \) of the Jacobian:
+    \[
+    \lambda = \frac{\sigma{\text{min}}}{\sigma{\text{min}}^2 + \alpha^2}
+    \]
+    where \( \alpha \) is a tuning parameter.
+- Weighting Matrix \( \mathbf{W} \):
+  - Assign higher weights to joints that consume more energy.
+  - Consider actuator characteristics and efficiency.
+  
+  
+
+  
+  
+  
+##
+## Improvement for qp_ik_solver  
+  
+Here are some suggestions for further improvements:
+
+Joint Velocity Limits:
+You could add inequality constraints to enforce joint velocity limits. This would make the solution more realistic and prevent excessive joint movements.
+
+Weighted Objective Function:
+Instead of using an identity matrix for H, you could use a diagonal matrix with different weights for each joint. This would allow you to prioritize the movement of certain joints over others, potentially leading to more energy-efficient solutions.
+
+Adaptive Damping:
+For the fallback DLS method, you could implement an adaptive damping factor based on the condition number of the Jacobian.
+
+Null Space Optimization:
+While the QP formulation implicitly handles null space optimization, you could explicitly add a null space term to optimize for secondary objectives like joint centering.
+
+Solution Refinement:
+After finding a solution, you could add a refinement step that tries to minimize joint movement while maintaining the end-effector pose.
+  
+
+##
+## improved contents in the qp_ik_solver2.py
+
+
+A weighted objective function to prioritize certain joints.
+
+Joint velocity limits as inequality constraints.
+
+Joint centering in the null space via the linear term in the objective function.
+
+Adaptive damping for the fallback DLS method.
+
+A solution refinement step to minimize joint movement while maintaining the end-effector pose.
+  
+

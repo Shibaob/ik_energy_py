@@ -1,0 +1,43 @@
+STANDARD TEST RESULTS:
+QP Success Rate: 45.37%
+SDLS Success Rate: 25.00%
+DLS Success Rate: 11.11%
+QP Average Time: 0.1413s
+SDLS Average Time: 0.2047s
+DLS Average Time: 0.0850s
+QP Position Error: 0.000003
+SDLS Position Error: 0.000981
+DLS Position Error: 0.000003
+
+SINGULAR TEST RESULTS:
+QP Success Rate: 66.67%
+SDLS Success Rate: 33.33%
+DLS Success Rate: 0.00%
+QP Average Time: 0.1773s
+SDLS Average Time: 0.1003s
+DLS Average Time: infs
+QP Position Error: 0.000002
+SDLS Position Error: 0.000994
+DLS Position Error: inf
+
+JOINT_LIMIT TEST RESULT:
+QP Success Rate: 100.00%
+SDLS Success Rate: 0.00%
+DLS Success Rate: 0.00%
+QP Average Time: 0.0025s
+SDLS Average Time: infs
+DLS Average Time: infs
+QP Position Error: 0.000000
+SDLS Position Error: inf
+DLS Position Error: inf
+
+TRAJECTORY TEST RESULTS:
+QP Success Rate: 93.33%
+SDLS Success Rate: 60.00%
+DLS Success Rate: 23.33%
+QP Average Time: 0.2508s
+SDLS Average Time: 0.1480s
+DLS Average Time: 0.0481s
+QP Position Error: 0.000004
+SDLS Position Error: 0.000976
+DLS Position Error: 0.000002

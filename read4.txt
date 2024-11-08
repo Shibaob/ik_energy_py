@@ -1,0 +1,160 @@
+## notes
+
+
+
+
+
+##
+1. Nominal Reach
+   Target: position [0.5, 0, 0.5], orientation [0, 0, 0]
+   Purpose: This scenario tests a straightforward reach to a point directly in front of the robot at a medium height. The orientation is neutral (no rotation).
+   Challenge: Serves as a baseline test. It's a relatively easy pose that the solver should handle well, allowing us to establish a performance benchmark.
+
+2. Extended Reach
+   Target: position [0.8, 0, 0.2], orientation [0, pi/4, 0]
+   Purpose: Tests the solver's ability to reach a point that's further away horizontally and lower vertically, with a 45-degree rotation around the y-axis.
+   Challenge: This poses a more difficult problem as it requires the robot to extend further, potentially approaching the limits of its workspace. The added rotation increases complexity.
+
+3. Overhead Reach
+   Target: position [0, 0.3, 0.9], orientation [pi/2, 0, 0]
+   Purpose: Evaluates the solver's performance for a high reach slightly to the side, with a 90-degree rotation around the x-axis.
+   Challenge: This scenario tests the upper limits of the robot's workspace and requires significant joint movement, especially in the shoulder and elbow joints. The rotation adds further complexity.
+
+4. Low Reach
+   Target: position [0.4, -0.4, 0.1], orientation [0, -pi/4, pi/4]
+   Purpose: Assesses the solver's capability to reach a low point diagonally to the side, with combined rotations around the y and z axes.
+   Challenge: This tests the lower limits of the workspace and requires coordination of multiple joints. The combined rotations make the orientation more complex.
+
+5. Complex Orientation
+   Target: position [0.5, 0.5, 0.5], orientation [pi/4, pi/6, -pi/3]
+   Purpose: Focuses on the solver's ability to achieve a complex orientation at a moderate reach.
+   Challenge: While the position is not extreme, the orientation involves rotations around all three axes. This tests the solver's precision in achieving complex end-effector orientations.
+
+These scenarios are designed to test various aspects of the IK solver:
+Workspace coverage: From low to high, close to far, and in different directions.
+Orientation complexity: From simple (no rotation) to complex (rotations around multiple axes).
+Joint coordination: Some poses require careful coordination of multiple joints.
+Edge cases: Several scenarios approach the limits of the robot's workspace.
+
+By testing these diverse scenarios, we can evaluate:
+1. Accuracy: How close the solver gets to the desired position and orientation.
+2. Reliability: Whether the solver consistently finds solutions across different types of poses.
+3. Efficiency: How many iterations are required for convergence in different scenarios.
+4. Robustness: How well the solver handles more challenging poses that may be close to singularities or joint limits.
+
+
+
+
+##
+Linear error function:
+
+The difference vector between the desired and achieved positions
+The Euclidean norm (magnitude) of this difference vector
+
+Mathematically, if p_d is the desired position and p_a is the achieved position, both in 3D space:
+Linear Error = √[(p_d.x - p_a.x)² + (p_d.y - p_a.y)² + (p_d.z - p_a.z)²]
+The result is a scalar value representing the distance (usually in meters) between the desired and achieved positions.
+
+
+
+
+
+
+
+
+
+
+
+##
+Angular error function:
+
+Computes the error rotation matrix by multiplying the transpose of the desired orientation matrix with the achieved orientation matrix.
+Converts this error matrix to a rotation vector using the axis-angle representation.
+Sums the absolute values of the components of this rotation vector.
+
+Mathematically:
+
+Error Matrix = R_d^T * R_a  (where R_d is desired rotation, R_a is achieved rotation)
+Convert Error Matrix to axis-angle representation: [θx, θy, θz]
+Angular Error = |θx| + |θy| + |θz|
+
+The result is a scalar value representing the total rotation angle (in radians) needed to correct the orientation.
+
+
+
+
+
+
+##
+def compute_position_error(desired_position, achieved_position):
+    """
+    Compute the Euclidean distance between desired and achieved positions.
+    
+    Args:
+    desired_position (np.array): 3D vector of the desired position
+    achieved_position (np.array): 3D vector of the achieved position
+    
+    Returns:
+    float: Euclidean distance between the positions
+    """
+    return np.linalg.norm(desired_position - achieved_position)
+    
+    
+    
+    
+##
+def compute_orientation_error(desired_orientation, achieved_orientation):
+    """
+    Compute the angular difference between desired and achieved orientations.
+    
+    Args:
+    desired_orientation (np.array): 3x3 rotation matrix or 4D quaternion of the desired orientation
+    achieved_orientation (np.array): 3x3 rotation matrix or 4D quaternion of the achieved orientation
+    
+    Returns:
+    float: Angular difference in radians
+    """
+    
+    
+    
+    
+##
+def compute_joint_space_error(desired_joints, achieved_joints):
+    """
+    Compute the joint-wise differences between desired and achieved joint angles.
+    
+    Args:
+    desired_joints (np.array): Vector of desired joint angles
+    achieved_joints (np.array): Vector of achieved joint angles
+    
+    Returns:
+    np.array: Vector of joint-wise absolute differences
+    float: Mean absolute joint error
+    """
+    joint_errors = np.abs(desired_joints - achieved_joints)
+    mean_joint_error = np.mean(joint_errors)
+    return joint_errors, mean_joint_error
+    
+    
+    
+    
+    
+##
+def compute_pose_reproduction_error(original_pose, reproduced_pose):
+    """
+    Compute both position and orientation errors between original and reproduced poses.
+    
+    Args:
+    original_pose (tuple): (position, orientation) of the original pose
+    reproduced_pose (tuple): (position, orientation) of the reproduced pose
+    
+    Returns:
+    tuple: (position_error, orientation_error)
+    """
+    orig_pos, orig_ori = original_pose
+    repro_pos, repro_ori = reproduced_pose
+    
+    pos_error = compute_position_error(orig_pos, repro_pos)
+    ori_error = compute_orientation_error(orig_ori, repro_ori)
+    
+    return pos_error, ori_error

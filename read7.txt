@@ -1,0 +1,152 @@
+## Challenge of using Selective damping approach
+
+1.Damping Factor Selection
+Challenge: Selecting appropriate damping factors is crucial but difficult
+Impact: Too large damping slows convergence; too small leads to instability
+
+2.Singular Configuration Handling
+Challenge: Performance degradation near singularities
+Technical Issue: Sudden changes in damping factors can cause jerky motion
+
+3.Multiple Task Priority Handling
+	Task Conflicts
+	Higher priority tasks may completely prevent lower priority tasks
+	Solution: Adaptive weighting and smooth priority transitions
+
+	Discontinuities
+	Sudden changes in task priorities can cause jerky motion
+	Solution: Implement smooth transition functions
+
+	Computational Cost
+	Multiple SVD computations for each priority level
+	Solution: Use approximation methods for less critical tasks
+
+	Numerical Stability
+	Accumulated numerical errors in nullspace projections
+	Solution: Regular reorthogonalization of nullspace projectors
+
+4.Computational Efficiency vs. Accuracy
+Challenge: SVD computation is expensive for real-time applications
+
+
+
+
+## Motivation of using adaptive weighting we proposed
+
+1.Natural Task Integration
+QP framework naturally handles multiple objectives
+Weights provide intuitive priority control
+Smooth transitions between tasks
+
+2.Constraint Handling
+Explicit constraint formulation
+Better handling of hard constraints
+Natural integration of inequality constraints
+
+3.Adaptivity
+Dynamic weight adjustment
+Configuration-dependent behavior
+Smooth priority transitions
+
+4.Numerical Stability
+More stable than null-space projection
+Better handling of singular configurations
+Natural regularization through weights
+
+
+
+
+
+## Experiment
+
+In the context of robotics and inverse kinematics, "Position error" and "Orientation error" are generally better terms to use. Here's why:
+
+1."Position error" is preferred over "Linear error" because:
+
+
+It directly describes what's being measured (error in position)
+"Linear" could be confused with other concepts like linear motion or linear algebra
+It's more commonly used in robotics literature and research papers
+It clearly communicates the physical meaning to both technical and non-technical audiences
+
+
+2."Orientation error" is preferred over "Angular error" because:
+
+
+It specifically relates to the end-effector's orientation
+
+
+
+
+
+
+## Experiment results in terms of multi tasks prioritize handling
+
+Joint Limit Cases (Image 1):
+
+
+Success Rate: QP shows 100% success while SDLS shows 0%
+Convergence Time: QP is very fast (~0.0025s)
+Error: QP maintains very low position and orientation errors
+The QP method excels in joint limit cases due to its explicit handling of joint limits through adaptive weights
+
+
+Singular Cases (Image 2):
+
+
+Success Rate: QP (~65%) outperforms SDLS (~33%)
+Convergence Time: QP takes longer (~0.175s) compared to SDLS (~0.095s)
+Joint Velocity Profiles: Show more dramatic changes in QP but better success rate
+Motion Smoothness: SDLS shows better smoothness (lower value) in singular configurations
+
+
+Standard Cases (Image 3):
+
+
+Success Rate: QP (~45%) performs better than SDLS (~25%)
+Convergence Time: SDLS takes longer (~0.19s) compared to QP (~0.14s)
+Error Comparison: QP shows better position accuracy, similar orientation errors
+Manipulability: SDLS shows slightly better manipulability index
+Motion Smoothness: SDLS demonstrates smoother motion
+
+
+Trajectory Cases (Image 4):
+
+
+Success Rate: QP (~90%) significantly outperforms SDLS (~60%)
+Convergence Time: QP takes longer (~0.24s vs ~0.14s)
+Manipulability: SDLS shows better manipulability index
+Joint Velocity Profiles: QP shows larger variations but better tracking
+Motion Smoothness: SDLS shows significantly smoother motion
+
+Key Findings:
+
+QP Advantages:
+
+
+Higher success rates across all test cases
+Better handling of joint limits
+More reliable in challenging configurations
+Superior position and orientation accuracy
+
+
+SDLS Advantages:
+
+
+Generally smoother motion
+Better manipulability in standard and trajectory cases
+Faster convergence in singular cases
+More consistent joint velocity profiles
+
+
+Trade-offs:
+
+
+QP sacrifices smoothness for better success rates and accuracy
+SDLS prioritizes smooth motion but with lower success rates
+QP takes longer in complex cases but provides better solutions
+
+Overall, your QP Weighted Adaptive approach shows superior performance in terms of success rate and accuracy, while SDLS shows advantages in motion smoothness and manipulability. The choice between them might depend on the specific application requirements (accuracy vs. smoothness).
+
+
+

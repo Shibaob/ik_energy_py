@@ -1,0 +1,77 @@
+## improvements
+
+
+selective damping方法要查看如何对他进行optimization，因为不能只对其他方法进行optimize而忽略对这个方法optimize，it's not fair
+
+
+我们weighted damping方法需要提升如何optimize它的weight，来不断更新，希望至少能得到local optimized configuration
+
+实验中需要引入机械臂的motion，大概在下一步中结合进去
+
+如何进一步应用到physical robot的实验
+
+
+results图太混乱了，需要优化
+
+
+
+
+
+## improvements2
+
+为什么要引入selective damping（SD）方法，还有另一个GMM damping方法，是否也可以加入对比中；这里有一个重要问题是，我们的方法引入了weighted damping，事实上跟SD方法不在一个方向上，看要如何说明为什么要跟SD进行比较。
+
+为什么要对原有的DLS-IK进行weighted的优化，这个weighted是对机械臂上的7个关节优化。
+
+现阶段对DLS-IK进行了weighted adpatation的优化提升，初步结果，不仅比DLS-IK有所提升，也比SD算法有提升；在paper的开头，可以提及LfD的相关东西，但是LfD不是本文的重点，本文要围绕DLS-IK的weighted adaptation提升，这里我们需要一个motivation，为什么要weighted adaptation，这里面有什么gap呢
+
+
+
+adaptation weighted的设计是用于下一步应用到physical robot的实验，适应机械臂运动的motion而优化weighted
+
+
+
+
+
+
+
+## Some knowledge
+## Selective damping approach
+The main advantages of this approach are:
+
+Stability: It provides a stable solution even near singularities.
+Smoothness: The selective damping helps to produce smoother joint motions.
+Adaptivity: The damping adapts to the condition of the Jacobian, providing appropriate regularization as needed.
+
+
+
+
+
+
+## Motivation of QP and joint weighting
+
+
+The introduction of weights in the Quadratic Programming (QP) approach is a crucial innovation in this research, and its significance should be highlighted. Here's an expanded motivation that includes the importance of the weighted approach:
+
+Motivation and Significance (with emphasis on weighting):
+
+In addition to the previously mentioned motivations, a key driver for this research is the need for more nuanced control over joint movements in redundant manipulators. This is where the introduction of weights becomes particularly significant:
+
+1. Joint-specific optimization: By incorporating weights into the QP formulation, we can prioritize or de-emphasize the movement of specific joints. This is crucial for:
+   a) Reducing wear and tear on certain joints that may be more prone to degradation
+   b) Optimizing energy consumption by preferring movement in more efficient joints
+   c) Adhering to task-specific constraints where certain joint movements may be more desirable than others
+
+2. Kinematic redundancy resolution: In redundant systems, there are often multiple joint configurations that can achieve the same end-effector pose. Weights provide a principled way to resolve this redundancy, allowing for secondary objectives to be met while still achieving the primary task.
+
+3. Adaptability to robot-specific characteristics: Different robotic platforms may have joints with varying torque capacities, speed limitations, or precision. The weighted approach allows the IK solver to be easily tuned to the specific characteristics of a given robot, potentially improving overall system performance.
+
+4. Enhanced singularity handling: By appropriately weighting joints, the algorithm can potentially navigate near-singular configurations more effectively, distributing the required motion across joints in a way that avoids excessive velocities in any single joint.
+
+5. Task-specific optimization: The ability to adjust weights allows for easy adaptation to different tasks. For instance, in a precision assembly task, weights could be adjusted to favor more precise joints, while in a large-scale manipulation task, weights might prioritize joints with greater strength or reach.
+
+The experimental results demonstrate the efficacy of this weighted QP approach. The consistently lower linear and angular errors across various reach scenarios, compared to the SDLS method, indicate that the weighted formulation not only improves accuracy but does so in a way that respects the kinematic structure and capabilities of the robotic system.
+
+Furthermore, the potential reduction in the number of iterations required for convergence, as shown in the "iterations comparison" plot, suggests that the weighted approach may lead to faster solutions in practice, despite the increased computational complexity of the QP solver.
+
+This research thus represents a significant step forward in IK solver development, offering a flexible, efficient, and robot-aware approach to solving the inverse kinematics problem. The weighted QP method has the potential to impact a wide range of robotic applications, from industrial automation to humanoid robotics, by providing more precise, efficient, and adaptable motion planning capabilities.

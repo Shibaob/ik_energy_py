@@ -1,0 +1,96 @@
+### 1: Introduction
+
+  - Robotic arms face significant challenges in achieving precise, reliable movements, particularly when dealing with singularities and joint limits.
+  - Traditional IK methods struggle with performance in complex configurations, often requiring manual tuning.
+  - This research focuses on developing an adaptive weighting scheme integrated with Damped Least Squares (DLS) to address these challenges.
+  - The adaptive method dynamically adjusts joint weights based on their proximity to limits and central positions, improving flexibility, joint limit avoidance, and singularity handling.
+
+
+### 2: Research Problem
+
+  - Singularities and joint limit violations impact stability and accuracy.
+  - Traditional methods require manual tuning and often perform poorly in complex configurations.
+
+
+### 3: Motivation
+
+  - Provide robust IK solutions across different scenarios.
+  - Address challenges like joint limit avoidance and better performance in difficult configurations.
+  - More intelligent, adaptive solvers that can adjust to the robot’s current state.
+  - Previous experiments showed the weighted method’s success, justifying improvements through adaptive weighting.
+  - Potential for more natural movements and reduced need for manual tuning.
+
+Improvement: Selective damping methods why we use it here? and any variant approaches of it?
+
+### 4: Contribution
+
+  - Development of an adaptive weighting scheme for IK, dynamically adjusting weights based on the robot’s configuration.
+  - Enhanced performance in challenging scenarios, especially near joint limits and in complex orientations.
+  - Comprehensive analysis comparing adaptive weighting against fixed weighting, DLS, and selective damping methods.
+  - Improvements in joint limit avoidance, singularity handling, and computational efficiency.
+
+
+### 5: Methodology
+
+
+#### Adaptive Weighting Scheme Development:
+  - Formulation of adaptive weights:
+    - Base weights for each joint.
+    - Limit factor: Increases weight as joint approaches limits.
+    - Center factor: Increases weight as joint moves away from the center position.
+  - Model:  
+    w_i(q) = w_{base,i} \cdot f_{limit}(q_i) \cdot f_{center}(q_i)
+    
+
+#### Inverse Kinematics Solver Implementation:
+  - Integrated adaptive weighting into the Damped Least Squares (DLS) framework.
+  - Objective function:  
+    \min_{\Delta q} \sum_{i=1}^n w_i(q) (\Delta q_i)^2
+  - Includes constraint handling for matching the end-effector pose.
+
+#### Metrics:
+  - Position error, Orientation error, Pose error, Joint space error
+ 
+  - linear error, angular error, computation time, iteration
+  
+  - robot motion position, velocity, acceleration
+  
+Improvement: any different between Position error, Orientation error and linear error, angular error?
+
+
+#### Scenarios:
+  - Nominal Reach: Standard reach within comfortable workspace.
+  - Extended Reach: Tasks near workspace boundaries.
+  - Overhead Reach: Tasks requiring overhead motions.
+  - Low Reach: Near the base or floor-level tasks.
+  - Complex Orientation: Challenging end-effector orientations.
+
+
+
+### 6: Experiment for Demonstration
+  - Comparison between fixed and adaptive weighting methods in five scenarios.
+  - Results show improved position, orientation, and joint space accuracy.
+  - Computational efficiency analysis indicates a trade-off between enhanced performance and increased complexity.
+
+
+Improvement: 
+
+The metrics setting is mass, they should be uniform that Position error, Orientation error, joint space error, pose error
+                                                         Computation time, iteration, success
+                                                         
+The scenarios setting according to different environment
+
+We try to setup three main experiments 我要改造这个部分，首先把metrics统一起来，然后分别整合三个实验部分，第一没有设置scenarios的方法之间的比较；第二设置了5个scenarios的比较；第三multi-tasks handling的分析；第四simulation比较
+
+还有一点我们整个实验要demonstrate的东西不明确
+
+
+
+## Reference
+
+Improvement: References need to be added
+
+Chat: which part should I cite with the reference, can you point it out?
+
+
+

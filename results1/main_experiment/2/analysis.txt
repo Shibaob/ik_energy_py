@@ -1,0 +1,610 @@
+Analyzing Results:
+
+========================================
+Success rate
+========================================
+
+Scenario: Nominal Reach
+  Weighted QP: 66.00%
+  Adaptive QP: 52.00%
+  Selective Damping: 34.00%
+  Basic DLS: 51.00%
+
+Scenario: Extended Reach
+  Weighted QP: 54.00%
+  Adaptive QP: 55.00%
+  Selective Damping: 50.00%
+  Basic DLS: 16.00%
+
+Scenario: Overhead Reach
+  Weighted QP: 57.00%
+  Adaptive QP: 52.00%
+  Selective Damping: 3.00%
+  Basic DLS: 38.00%
+
+Scenario: Low Reach
+  Weighted QP: 29.00%
+  Adaptive QP: 24.00%
+  Selective Damping: 11.00%
+  Basic DLS: 0.00%
+
+Scenario: Complex Orientation
+  Weighted QP: 0.00%
+  Adaptive QP: 0.00%
+  Selective Damping: 0.00%
+  Basic DLS: 0.00%
+
+========================================
+Position error
+========================================
+
+Scenario: Nominal Reach
+  Weighted QP:
+    Mean: 0.000003 ± 0.000001
+    Median: 0.000003
+    Range: [0.000001, 0.000006]
+    95% CI: [0.000002, 0.000003]
+  Adaptive QP:
+    Mean: 0.000003 ± 0.000001
+    Median: 0.000003
+    Range: [0.000002, 0.000005]
+    95% CI: [0.000003, 0.000003]
+  Selective Damping:
+    Mean: 0.000987 ± 0.000012
+    Median: 0.000991
+    Range: [0.000956, 0.001000]
+    95% CI: [0.000983, 0.000991]
+  Basic DLS:
+    Mean: 0.000003 ± 0.000001
+    Median: 0.000003
+    Range: [0.000001, 0.000006]
+    95% CI: [0.000003, 0.000003]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 365086.3213, p-value: 0.0000
+
+  Pairwise t-tests (with Bonferroni correction):
+    WQP vs AQP:
+      t-statistic: -1.7396
+      p-value: 8.4590e-02 (not significant)
+      Mean difference: -0.000000
+    WQP vs SD:
+      t-statistic: -664.2921
+      p-value: 7.5758e-181 (significant)
+      Mean difference: -0.000984
+    WQP vs DLS:
+      t-statistic: -1.3916
+      p-value: 1.6674e-01 (not significant)
+      Mean difference: -0.000000
+    AQP vs SD:
+      t-statistic: -590.5322
+      p-value: 9.3205e-154 (significant)
+      Mean difference: -0.000984
+    AQP vs DLS:
+      t-statistic: 0.0218
+      p-value: 9.8264e-01 (not significant)
+      Mean difference: 0.000000
+    SD vs DLS:
+      t-statistic: 581.0765
+      p-value: 1.4031e-151 (significant)
+      Mean difference: 0.000984
+
+Scenario: Extended Reach
+  Weighted QP:
+    Mean: 0.000004 ± 0.000001
+    Median: 0.000004
+    Range: [0.000001, 0.000007]
+    95% CI: [0.000003, 0.000004]
+  Adaptive QP:
+    Mean: 0.000004 ± 0.000002
+    Median: 0.000004
+    Range: [0.000001, 0.000008]
+    95% CI: [0.000004, 0.000004]
+  Selective Damping:
+    Mean: 0.000988 ± 0.000008
+    Median: 0.000989
+    Range: [0.000961, 0.000999]
+    95% CI: [0.000986, 0.000991]
+  Basic DLS:
+    Mean: 0.000003 ± 0.000001
+    Median: 0.000003
+    Range: [0.000001, 0.000006]
+    95% CI: [0.000003, 0.000004]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 537585.3939, p-value: 0.0000
+
+  Pairwise t-tests (with Bonferroni correction):
+    WQP vs AQP:
+      t-statistic: -0.4753
+      p-value: 6.3554e-01 (not significant)
+      Mean difference: -0.000000
+    WQP vs SD:
+      t-statistic: -856.4893
+      p-value: 1.5649e-198 (significant)
+      Mean difference: -0.000985
+    WQP vs DLS:
+      t-statistic: 1.1847
+      p-value: 2.4025e-01 (not significant)
+      Mean difference: 0.000000
+    AQP vs SD:
+      t-statistic: -861.5647
+      p-value: 1.6514e-200 (significant)
+      Mean difference: -0.000985
+    AQP vs DLS:
+      t-statistic: 1.4334
+      p-value: 1.5626e-01 (not significant)
+      Mean difference: 0.000001
+    SD vs DLS:
+      t-statistic: 470.0145
+      p-value: 5.9680e-115 (significant)
+      Mean difference: 0.000985
+
+Scenario: Overhead Reach
+  Weighted QP:
+    Mean: 0.000003 ± 0.000002
+    Median: 0.000003
+    Range: [0.000001, 0.000010]
+    95% CI: [0.000003, 0.000004]
+  Adaptive QP:
+    Mean: 0.000003 ± 0.000001
+    Median: 0.000003
+    Range: [0.000001, 0.000005]
+    95% CI: [0.000003, 0.000003]
+  Selective Damping:
+    Mean: 0.000973 ± 0.000026
+    Median: 0.000989
+    Range: [0.000937, 0.000995]
+    95% CI: [0.000944, 0.001003]
+  Basic DLS:
+    Mean: 0.000002 ± 0.000001
+    Median: 0.000002
+    Range: [0.000000, 0.000006]
+    95% CI: [0.000002, 0.000003]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 57750.2712, p-value: 0.0000
+
+  Pairwise t-tests (with Bonferroni correction):
+    WQP vs AQP:
+      t-statistic: 0.8177
+      p-value: 4.1537e-01 (not significant)
+      Mean difference: 0.000000
+    WQP vs SD:
+      t-statistic: -266.4368
+      p-value: 2.9053e-91 (significant)
+      Mean difference: -0.000970
+    WQP vs DLS:
+      t-statistic: 2.0559
+      p-value: 4.2598e-02 (not significant)
+      Mean difference: 0.000001
+    AQP vs SD:
+      t-statistic: -258.8881
+      p-value: 6.7172e-84 (significant)
+      Mean difference: -0.000971
+    AQP vs DLS:
+      t-statistic: 1.6586
+      p-value: 1.0075e-01 (not significant)
+      Mean difference: 0.000000
+    SD vs DLS:
+      t-statistic: 218.9588
+      p-value: 7.0555e-62 (significant)
+      Mean difference: 0.000971
+
+Scenario: Low Reach
+  Insufficient successful runs for comparison
+
+Scenario: Complex Orientation
+  Insufficient successful runs for comparison
+
+========================================
+Orientation error
+========================================
+
+Scenario: Nominal Reach
+  Weighted QP:
+    Mean: 0.000585 ± 0.001174
+    Median: 0.000000
+    Range: [0.000000, 0.004441]
+    95% CI: [0.000302, 0.000868]
+  Adaptive QP:
+    Mean: 0.000725 ± 0.001303
+    Median: 0.000000
+    Range: [0.000000, 0.004765]
+    95% CI: [0.000371, 0.001079]
+  Selective Damping:
+    Mean: 0.000610 ± 0.001198
+    Median: 0.000000
+    Range: [0.000000, 0.004531]
+    95% CI: [0.000208, 0.001013]
+  Basic DLS:
+    Mean: 0.001611 ± 0.001741
+    Median: 0.000000
+    Range: [0.000000, 0.004720]
+    95% CI: [0.001133, 0.002089]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 6.3606, p-value: 0.0004
+
+  Pairwise t-tests (with Bonferroni correction):
+    WQP vs AQP:
+      t-statistic: -0.6066
+      p-value: 5.4530e-01 (not significant)
+      Mean difference: -0.000140
+    WQP vs SD:
+      t-statistic: -0.1005
+      p-value: 9.2017e-01 (not significant)
+      Mean difference: -0.000025
+    WQP vs DLS:
+      t-statistic: -3.7648
+      p-value: 2.6423e-04 (significant)
+      Mean difference: -0.001026
+    AQP vs SD:
+      t-statistic: 0.4063
+      p-value: 6.8554e-01 (not significant)
+      Mean difference: 0.000114
+    AQP vs DLS:
+      t-statistic: -2.8985
+      p-value: 4.5996e-03 (significant)
+      Mean difference: -0.000886
+    SD vs DLS:
+      t-statistic: -2.8861
+      p-value: 4.9702e-03 (significant)
+      Mean difference: -0.001000
+
+Scenario: Extended Reach
+  Weighted QP:
+    Mean: 0.000907 ± 0.001231
+    Median: 0.000000
+    Range: [0.000000, 0.004801]
+    95% CI: [0.000579, 0.001235]
+  Adaptive QP:
+    Mean: 0.000836 ± 0.001080
+    Median: 0.000000
+    Range: [0.000000, 0.003503]
+    95% CI: [0.000551, 0.001121]
+  Selective Damping:
+    Mean: 0.001206 ± 0.001526
+    Median: 0.000000
+    Range: [0.000000, 0.004908]
+    95% CI: [0.000783, 0.001629]
+  Basic DLS:
+    Mean: 0.000932 ± 0.001495
+    Median: 0.000000
+    Range: [0.000000, 0.004290]
+    95% CI: [0.000199, 0.001664]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 0.7657, p-value: 0.5147
+
+Scenario: Overhead Reach
+  Weighted QP:
+    Mean: 0.000351 ± 0.000916
+    Median: 0.000000
+    Range: [0.000000, 0.003371]
+    95% CI: [0.000113, 0.000589]
+  Adaptive QP:
+    Mean: 0.000921 ± 0.001483
+    Median: 0.000000
+    Range: [0.000000, 0.005255]
+    95% CI: [0.000518, 0.001324]
+  Selective Damping:
+    Mean: 0.000000 ± 0.000000
+    Median: 0.000000
+    Range: [0.000000, 0.000000]
+    95% CI: [0.000000, 0.000000]
+  Basic DLS:
+    Mean: 0.000652 ± 0.001320
+    Median: 0.000000
+    Range: [0.000000, 0.004142]
+    95% CI: [0.000232, 0.001071]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 2.1378, p-value: 0.0980
+
+Scenario: Low Reach
+  Insufficient successful runs for comparison
+
+Scenario: Complex Orientation
+  Insufficient successful runs for comparison
+
+========================================
+Iterations
+========================================
+
+Scenario: Nominal Reach
+  Weighted QP:
+    Mean: 38.136364 ± 60.852003
+    Median: 21.500000
+    Range: [11.000000, 500.000000]
+    95% CI: [23.455251, 52.817477]
+  Adaptive QP:
+    Mean: 34.057692 ± 37.389537
+    Median: 24.500000
+    Range: [11.000000, 192.000000]
+    95% CI: [23.895101, 44.220284]
+  Selective Damping:
+    Mean: 214.176471 ± 90.762285
+    Median: 191.500000
+    Range: [86.000000, 481.000000]
+    95% CI: [183.667888, 244.685053]
+  Basic DLS:
+    Mean: 77.882353 ± 42.132213
+    Median: 71.000000
+    Range: [16.000000, 208.000000]
+    95% CI: [66.318961, 89.445745]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 80.5760, p-value: 0.0000
+
+  Pairwise t-tests (with Bonferroni correction):
+    WQP vs AQP:
+      t-statistic: 0.4207
+      p-value: 6.7474e-01 (not significant)
+      Mean difference: 4.078671
+    WQP vs SD:
+      t-statistic: -11.3991
+      p-value: 1.1506e-19 (significant)
+      Mean difference: -176.040107
+    WQP vs DLS:
+      t-statistic: -3.9503
+      p-value: 1.3502e-04 (significant)
+      Mean difference: -39.745989
+    AQP vs SD:
+      t-statistic: -12.6020
+      p-value: 4.6410e-21 (significant)
+      Mean difference: -180.118778
+    AQP vs DLS:
+      t-statistic: -5.5316
+      p-value: 2.5033e-07 (significant)
+      Mean difference: -43.824661
+    SD vs DLS:
+      t-statistic: 9.2123
+      p-value: 2.4549e-14 (significant)
+      Mean difference: 136.294118
+
+Scenario: Extended Reach
+  Weighted QP:
+    Mean: 37.814815 ± 28.169509
+    Median: 35.000000
+    Range: [13.000000, 176.000000]
+    95% CI: [30.301381, 45.328249]
+  Adaptive QP:
+    Mean: 30.272727 ± 14.835405
+    Median: 27.000000
+    Range: [14.000000, 102.000000]
+    95% CI: [26.351932, 34.193522]
+  Selective Damping:
+    Mean: 257.480000 ± 70.755421
+    Median: 249.000000
+    Range: [91.000000, 454.000000]
+    95% CI: [237.867598, 277.092402]
+  Basic DLS:
+    Mean: 109.187500 ± 53.679860
+    Median: 97.000000
+    Range: [42.000000, 200.000000]
+    95% CI: [82.884369, 135.490631]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 277.9877, p-value: 0.0000
+
+  Pairwise t-tests (with Bonferroni correction):
+    WQP vs AQP:
+      t-statistic: 1.7372
+      p-value: 8.5233e-02 (not significant)
+      Mean difference: 7.542088
+    WQP vs SD:
+      t-statistic: -20.8771
+      p-value: 1.3065e-38 (significant)
+      Mean difference: -219.665185
+    WQP vs DLS:
+      t-statistic: -6.9328
+      p-value: 1.8738e-09 (significant)
+      Mean difference: -71.372685
+    AQP vs SD:
+      t-statistic: -23.0363
+      p-value: 1.9829e-42 (significant)
+      Mean difference: -227.207273
+    AQP vs DLS:
+      t-statistic: -9.5653
+      p-value: 2.8206e-14 (significant)
+      Mean difference: -78.914773
+    SD vs DLS:
+      t-statistic: 7.5863
+      p-value: 1.7295e-10 (significant)
+      Mean difference: 148.292500
+
+Scenario: Overhead Reach
+  Weighted QP:
+    Mean: 55.754386 ± 63.546441
+    Median: 40.000000
+    Range: [24.000000, 500.000000]
+    95% CI: [39.257200, 72.251572]
+  Adaptive QP:
+    Mean: 64.711538 ± 24.586063
+    Median: 61.000000
+    Range: [31.000000, 175.000000]
+    95% CI: [58.028970, 71.394106]
+  Selective Damping:
+    Mean: 304.666667 ± 164.230191
+    Median: 366.000000
+    Range: [80.000000, 468.000000]
+    95% CI: [118.822711, 490.510623]
+  Basic DLS:
+    Mean: 141.763158 ± 67.442933
+    Median: 126.000000
+    Range: [40.000000, 337.000000]
+    95% CI: [120.319409, 163.206907]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 31.8513, p-value: 0.0000
+
+  Pairwise t-tests (with Bonferroni correction):
+    WQP vs AQP:
+      t-statistic: -0.9446
+      p-value: 3.4697e-01 (not significant)
+      Mean difference: -8.957152
+    WQP vs SD:
+      t-statistic: -5.7377
+      p-value: 3.6734e-07 (significant)
+      Mean difference: -248.912281
+    WQP vs DLS:
+      t-statistic: -6.2386
+      p-value: 1.2919e-08 (significant)
+      Mean difference: -86.008772
+    AQP vs SD:
+      t-statistic: -8.7774
+      p-value: 6.5483e-12 (significant)
+      Mean difference: -239.955128
+    AQP vs DLS:
+      t-statistic: -7.4935
+      p-value: 4.9542e-11 (significant)
+      Mean difference: -77.051619
+    SD vs DLS:
+      t-statistic: 3.3675
+      p-value: 1.7165e-03 (significant)
+      Mean difference: 162.903509
+
+Scenario: Low Reach
+  Insufficient successful runs for comparison
+
+Scenario: Complex Orientation
+  Insufficient successful runs for comparison
+
+========================================
+Computation time
+========================================
+
+Scenario: Nominal Reach
+  Weighted QP:
+    Mean: 0.081486 ± 0.129627
+    Median: 0.045963
+    Range: [0.023558, 1.065541]
+    95% CI: [0.050212, 0.112760]
+  Adaptive QP:
+    Mean: 0.080314 ± 0.087739
+    Median: 0.057091
+    Range: [0.026453, 0.459562]
+    95% CI: [0.056467, 0.104162]
+  Selective Damping:
+    Mean: 0.161010 ± 0.068413
+    Median: 0.143211
+    Range: [0.064731, 0.360884]
+    95% CI: [0.138014, 0.184006]
+  Basic DLS:
+    Mean: 0.075244 ± 0.040994
+    Median: 0.070299
+    Range: [0.015167, 0.205046]
+    95% CI: [0.063994, 0.086495]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 7.2021, p-value: 0.0001
+
+  Pairwise t-tests (with Bonferroni correction):
+    WQP vs AQP:
+      t-statistic: 0.0554
+      p-value: 9.5593e-01 (not significant)
+      Mean difference: 0.001171
+    WQP vs SD:
+      t-statistic: -3.3116
+      p-value: 1.2998e-03 (significant)
+      Mean difference: -0.079524
+    WQP vs DLS:
+      t-statistic: 0.3284
+      p-value: 7.4318e-01 (not significant)
+      Mean difference: 0.006241
+    AQP vs SD:
+      t-statistic: -4.4834
+      p-value: 2.3081e-05 (significant)
+      Mean difference: -0.080695
+    AQP vs DLS:
+      t-statistic: 0.3709
+      p-value: 7.1152e-01 (not significant)
+      Mean difference: 0.005070
+    SD vs DLS:
+      t-statistic: 7.1322
+      p-value: 3.3709e-10 (significant)
+      Mean difference: 0.085765
+
+Scenario: Extended Reach
+  Weighted QP:
+    Mean: 0.087440 ± 0.065111
+    Median: 0.081418
+    Range: [0.027917, 0.405913]
+    95% CI: [0.070073, 0.104807]
+  Adaptive QP:
+    Mean: 0.070050 ± 0.034475
+    Median: 0.062954
+    Range: [0.031982, 0.236277]
+    95% CI: [0.060939, 0.079161]
+  Selective Damping:
+    Mean: 0.193171 ± 0.053083
+    Median: 0.187064
+    Range: [0.068307, 0.339857]
+    95% CI: [0.178457, 0.207885]
+  Basic DLS:
+    Mean: 0.105774 ± 0.051271
+    Median: 0.092971
+    Range: [0.041698, 0.187281]
+    95% CI: [0.080651, 0.130897]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 54.7983, p-value: 0.0000
+
+  Pairwise t-tests (with Bonferroni correction):
+    WQP vs AQP:
+      t-statistic: 1.7309
+      p-value: 8.6360e-02 (not significant)
+      Mean difference: 0.017390
+    WQP vs SD:
+      t-statistic: -8.9469
+      p-value: 1.7342e-14 (significant)
+      Mean difference: -0.105731
+    WQP vs DLS:
+      t-statistic: -1.0203
+      p-value: 3.1118e-01 (not significant)
+      Mean difference: -0.018334
+    AQP vs SD:
+      t-statistic: -14.0805
+      p-value: 9.5221e-26 (significant)
+      Mean difference: -0.123121
+    AQP vs DLS:
+      t-statistic: -3.1874
+      p-value: 2.1577e-03 (significant)
+      Mean difference: -0.035724
+    SD vs DLS:
+      t-statistic: 5.6911
+      p-value: 3.3945e-07 (significant)
+      Mean difference: 0.087397
+
+Scenario: Overhead Reach
+  Weighted QP:
+    Mean: 0.122899 ± 0.139735
+    Median: 0.089005
+    Range: [0.052924, 1.099310]
+    95% CI: [0.086622, 0.159175]
+  Adaptive QP:
+    Mean: 0.151581 ± 0.057732
+    Median: 0.143900
+    Range: [0.073165, 0.411332]
+    95% CI: [0.135889, 0.167272]
+  Selective Damping:
+    Mean: 0.228139 ± 0.123087
+    Median: 0.273873
+    Range: [0.059818, 0.350726]
+    95% CI: [0.088853, 0.367425]
+  Basic DLS:
+    Mean: 0.134924 ± 0.064948
+    Median: 0.120376
+    Range: [0.037364, 0.326217]
+    95% CI: [0.114274, 0.155575]
+
+  Statistical Analysis:
+  ANOVA - F-statistic: 1.5436, p-value: 0.2058
+
+Scenario: Low Reach
+  Insufficient successful runs for comparison
+
+Scenario: Complex Orientation
+  Insufficient successful runs for comparison
+

@@ -1,0 +1,21 @@
+## Experiment
+
+Typically, an experiment section for such a study can be clarified by organizing it into three main parts: 
+
+1. **Objectives**: Explicitly state what the experiment seeks to prove or compare. For your work, this could be showing that adaptive weighting in QP-based DLS-IK offers improved handling of singularities and task prioritization compared to other methods like SDLS. Summarize these in a few bullet points to give readers a clear sense of purpose.
+
+2. **Experimental Design**: This should define the scenarios in a way that aligns with the objectives. For instance:
+   - *Nominal Reach* to test baseline stability.
+   - *Extended Reach* and *Overhead Reach* to evaluate singularity handling and joint prioritization.
+   - *Low Reach* to assess joint limit management.
+   - *Complex Orientation* to measure orientation precision in multi-task prioritization.
+   
+3. **Expected Outcomes**: Briefly outline what successful results would look like in terms of each metric (position error, orientation error, etc.) and how they align with proving the objectives. This step helps tie the scenarios back to the claims in the objectives.
+
+
+
+## Experiment2
+
+position and orientation error - DLS, adaptive-weight, SD (with and without scenarios)
+
+

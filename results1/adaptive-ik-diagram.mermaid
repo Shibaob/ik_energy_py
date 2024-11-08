@@ -1,0 +1,32 @@
+flowchart TD
+    A[Start] --> B[Initialize IK Solver]
+    B --> C[Set Target Pose]
+    C --> D[Initialize Seed Configuration]
+    D --> E[Enter Optimization Loop]
+    E --> F{Optimize using SLSQP}
+    F -->|Success| G[Update Joint Configuration]
+    F -->|Failure| H[Calculate Adaptive Weights]
+    H --> I[Compute Jacobian]
+    I --> J[Perform Weighted Damped Least Squares]
+    J --> G
+    G --> K{Check Convergence}
+    K -->|Not Converged| E
+    K -->|Converged| L[Adjust Last Joint]
+    L --> M[Validate Solution]
+    M --> N[Return Solution]
+    N --> O[End]
+
+    subgraph Adaptive_Weighting_Process[Adaptive Weighting Process]
+    P[Calculate Normalized Joint Positions]
+    Q[Compute Limit Factor]
+    R[Calculate Center Distance]
+    S[Compute Center Factor]
+    T[Combine with Base Weights]
+    P --> Q
+    P --> R
+    Q --> T
+    R --> S
+    S --> T
+    end
+
+    H --> Adaptive_Weighting_Process

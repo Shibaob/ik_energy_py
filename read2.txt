@@ -1,0 +1,72 @@
+## notes
+
+
+Certainly! Designing scenarios to evaluate the performance of our weighted IK solver is an excellent idea. We'll create a set of test cases that will help us understand how the solver performs under different conditions and how the joint weights affect the solutions. Here's a set of scenarios we can use to evaluate the IK solver:
+
+
+This evaluation script does the following:
+
+1. Defines five test scenarios with different target poses and orientations:
+   - Nominal Reach: A standard reaching position
+   - Extended Reach: A farther reach with some rotation
+   - Overhead Reach: A high reach with significant rotation
+   - Low Reach: A low reach with combined rotations
+   - Complex Orientation: A reach with complex rotational components
+
+2. Implements functions to run scenarios and evaluate results.
+
+3. Creates two IK solvers: one with uniform weights and one with custom weights.
+
+4. Runs all scenarios for both solvers and compares the results.
+
+5. Plots the results for visual comparison.
+
+To use this evaluation script:
+
+1. Make sure you have matplotlib installed (`pip install matplotlib`).
+2. Add this code to your existing script, after the IK and FK class definitions.
+3. Run the script.
+
+The script will output the results for each scenario for both uniform and weighted solvers, and display plots comparing linear error, angular error, and number of iterations for successful solutions.
+
+This evaluation will help you:
+
+1. Assess the solver's performance across different types of reach and orientation tasks.
+2. Compare the effectiveness of uniform vs. weighted joint prioritization.
+3. Identify scenarios where the weighted approach provides better results or converges faster.
+4. Discover any scenarios where the solver struggles or fails to find a solution.
+
+Based on the results, you can further refine the joint weights or modify the solver to improve its performance in challenging scenarios. You might also want to add more specific scenarios that are relevant to your particular application or robot configuration.
+
+#######
+
+
+
+
+
+Test Scenarios
+We define five test scenarios to evaluate the solvers:
+
+Nominal Reach: A standard reaching position
+Target: position [0.5, 0, 0.5], orientation [0, 0, 0]
+
+
+Extended Reach: A farther reach with some rotation
+Target: position [0.8, 0, 0.2], orientation [0, pi/4, 0]
+
+
+Overhead Reach: A high reach with significant rotation
+Target: position [0, 0.3, 0.9], orientation [pi/2, 0, 0]
+
+
+Low Reach: A low reach with combined rotations
+Target: position [0.4, -0.4, 0.1], orientation [0, -pi/4, pi/4]
+
+
+Complex Orientation: A reach with complex rotational components
+Target: position [0.5, 0.5, 0.5], orientation [pi/4, pi/6, -pi/3]
+
+
+
+
+

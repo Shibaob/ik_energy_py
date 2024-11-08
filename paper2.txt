@@ -1,0 +1,110 @@
+## Modification suggestion
+
+1.
+equation need to get modification
+
+2.
+实验结果修改
+
+3.
+Heeading的大小写注意
+
+
+4.
+figure尺寸大小注意，还有及其要说明的小标题
+
+
+5.
+stability没有体现出来，试图展示出smoothness
+
+
+6.
+Metrics要保持一致，要对应该demonstrate的东西
+
+
+7.
+Abstract要加入implementation，本文重点在这里强调出来
+
+
+8.
+第一个图，本文方法的结构图要替换成新的图
+
+
+9.
+Method章节中的C章节，qp approach中要加入本文是怎么应用这个方法，不只是陈述这个方法
+
+
+
+10.
+设置一个boundary，在这个范围内robot arm能运行稳定和得到一个smoothness的状态，速度变化也是能得到一个很好的控制
+
+speed margin we can set up
+
+
+
+
+11.
+In the discussion part, we add the trade off stability and accuracy (position and orientation error) in the adaptive weighting
+
+
+
+
+12.
+图中的单位要标注出来
+
+
+
+13.
+joint velocity profile有点不清晰是怎么算出来的，这里出现了巨大的落差
+
+
+
+
+14.
+本文的方法不能只是用QP这个简称，要重新设计一个
+
+
+
+
+
+15.
+Title修改
+
+adaptive weighted qp 应该要包括进去
+
+robust weighted qp
+
+
+
+16.
+考虑加入一些noise，disturbance来测试robustness
+
+inner or outer disturbance
+
+
+
+17.
+加入一个table比较各个方法在不同scenarios中的数据比较
+
+
+
+18.
+加入一个robot图，可以加在第一个方法结构图里，或者是experiment的setup部分
+
+
+
+19.
+smoothness和stability全文到处都讲到了，有点乱要统一一下，我们可能关注在smoothness（这个点比较容易讲）
+
+
+
+
+
+
+
+
+
+
+
+
+

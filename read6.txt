@@ -1,0 +1,147 @@
+## Motivation
+
+Provide more robust and flexible IK solutions across a wider range of scenarios.
+Address some of the remaining challenges in IK, such as joint limit avoidance and performance in challenging configurations.
+Move towards more intelligent, context-aware IK solvers that can adapt to the robot's current state and task requirements.
+
+The previous experimental results, showing that the weighted method outperformed other approaches, provide a strong justification for further improving this method. The adaptive approach can be presented as a refinement of an already successful technique, potentially pushing the performance even further. We could structure experiments to directly compare the adaptive weighted method against the fixed weighted method across the same scenarios we used before (Nominal Reach, Extended Reach, Overhead Reach, Low Reach, Complex Orientation). This would provide a clear demonstration of any improvements and allow for a comprehensive comparison using established metrics.
+
+Enhanced Flexibility: Adapts to different robot configurations in real-time, potentially improving performance across a wider range of tasks and scenarios.
+Improved Joint Limit Avoidance: By increasing weights for joints near their limits, the method naturally steers solutions away from extreme configurations.
+Better Singularity Handling: Adaptive weights can help in navigating near-singular configurations more effectively than fixed weights.
+Potential for More Natural Movements: By encouraging joints to stay near central positions when possible, the method might produce more natural-looking robot motions.
+Reduced Need for Manual Tuning: While base weights still need to be set, the adaptive nature of the method might make it more robust to initial weight choices.
+
+
+
+
+
+## Contribution for the journal
+
+improvement for the DLS-IK solution - uniform weighted joint solution and adaptive weighted joint solution
+
+scenarios setting following - Nominal Reach, Extended Reach, Overhead Reach, Low Reach, Complex Orientation
+
+metrics setting - position error, orientation error, pose_position error, pose_orientation error, joint space error and another linear error, angular error, computation time, iteration
+                  smoothness
+
+
+
+
+
+
+
+## Contribution
+
+Development of an Adaptive Weighting Scheme for Inverse Kinematics
+- Introduced a novel approach that dynamically adjusts joint weights based on the current robot configuration.
+- Formulated mathematical models for adaptive weight calculation, considering joint limits and neutral positions.
+
+Enhanced Performance in Challenging Scenarios
+- Demonstrated improved IK solutions in scenarios that are typically problematic for fixed-weight methods:
+  - Near joint limits
+  - Extended reach configurations
+  - Complex orientations
+
+Comprehensive Comparative Analysis
+- Conducted extensive experiments comparing the adaptive weighted method against:
+  - Damped Least Squares (DLS)
+  - Fixed weighted method
+  - Selective damping method
+- Evaluated performance across various metrics:
+  - Position error
+  - Orientation error
+  - Pose (combined position and orientation) error
+  - Joint space error
+
+Versatility Across Different Robotic Tasks
+- Validated the adaptive weighted method's effectiveness in diverse scenarios:
+  - Nominal Reach
+  - Extended Reach
+  - Overhead Reach
+  - Low Reach
+  - Complex Orientation
+
+Improved Joint Limit Avoidance
+- Developed a mechanism within the adaptive weighting scheme to naturally avoid joint limits without explicit constraints.
+- Demonstrated reduced occurrences of reaching joint limits compared to fixed weighting methods.
+
+Enhanced Singularity Handling
+- Showed improved performance near singular configurations, building upon the strengths of the DLS method.
+- Provided a smoother transition between regular and near-singular configurations.
+
+
+Computational Efficiency Analysis
+- Analyzed the computational cost of the adaptive weighting approach compared to fixed weighting methods.
+- Demonstrated the trade-off between improved solution quality and computational complexity.
+
+
+
+
+
+
+## Methodology
+
+
+Adaptive Weighting Scheme Development
+- Formulation of adaptive weight calculation:
+  - Base weights for each joint
+  - Limit factor: increases weight as joint approaches limits
+  - Center factor: increases weight as joint moves away from center position
+- Mathematical model: $w_i(q) = w_{base,i} \cdot f_{limit}(q_i) \cdot f_{center}(q_i)$
+
+Inverse Kinematics Solver Implementation
+- Integration of adaptive weighting into Damped Least Squares (DLS) framework
+- Objective function: $\min_{\Delta q} \sum_{i=1}^n w_i(q) (\Delta q_i)^2$
+- Constraint handling for end-effector pose matching
+
+
+Performance Metrics
+- Position error: Euclidean distance between desired and achieved end-effector positions
+- Orientation error: Angle between desired and achieved end-effector orientations
+- Pose error: Combined metric of position and orientation errors
+- Joint space error: Difference between desired and achieved joint configurations
+
+Test Scenarios
+- Nominal Reach: Standard reaching tasks within the robot's comfortable workspace
+- Extended Reach: Tasks near the boundaries of the robot's workspace
+- Overhead Reach: Tasks requiring the robot to reach above its base
+- Low Reach: Tasks near the robot's base or floor level
+- Complex Orientation: Tasks with challenging end-effector orientations
+
+
+
+
+
+
+
+
+
+
+
+## experiment
+
+uniform_weighted, varied_weighted, selective_damping, adaptive_weighted - approaches comparison
+
+franka robot simulation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Prompt question
+
+the structure of the paper can you present into PPT slides.
+
+Please create a 6 slides presentation from this article ensuring that you include the following: a slide on the theoretical framework, methodology, results and discussion. Include any references that are used
+
